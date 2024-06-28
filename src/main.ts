@@ -17,7 +17,6 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     <div class="card">
     <button id="save" type="button">Save</button>
     </div>
-
   </div>
 `;
 
