@@ -1,8 +1,11 @@
 import "./style.css";
+import { consoleHistory } from "log-collect-fe";
 
-function saveToFile(element: HTMLButtonElement) {
+// @ts-ignore
+window.consoleHistory = consoleHistory;
+function saveToFile(element: HTMLButtonElement, data: typeof consoleHistory) {
   element.addEventListener("click", () => {
-    const blob = new Blob(["Hello, world1!"], { type: "text/plain" });
+    const blob = new Blob([JSON.stringify(data)], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -20,4 +23,4 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   </div>
 `;
 
-saveToFile(document.querySelector<HTMLButtonElement>("#save")!);
+saveToFile(document.querySelector<HTMLButtonElement>("#save")!, consoleHistory);
